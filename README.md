@@ -32,15 +32,20 @@ from scipy.stats import kurtosis, skew
 
 
 ```python
-x_random = None
+x_random = np.random.normal(scale=2, size= 10000)
+plt.hist(x_random, bins='auto');
+plt.title('Histogram Random Normal Sample');
+kurtosis(x_random),skew(x_random)
 
-# Skewness = -0.0025781248189666343
-# kurtosis = 0.03976806960642154
+
 
 ```
 
-    Skewness = -0.01442829768952485
-    kurtosis = 0.016922288438713018
+
+
+
+    (0.05796557082601339, 0.018835604131264606)
+
 
 
 
@@ -49,12 +54,17 @@ x_random = None
 
 
 ```python
-# Your observations here 
+# The distribution of the random is normal.
+# Skewness and kurtosis is minimal.
+#
+# A very slight positve skewness is observed as there are slightly more values on the left  
+# side of distribution mean than those on right side.
 
 
-#
-#
-#
+# The kurtosis value shows that this distribution is Platykurtic: The Kurtosis < 0 . In this implementation
+# of kurtosis (Fisher's), 3 is subtracted from the Pearson kurtosis. Fisher's kurtosis is also known as excess kurtosis.
+
+# Data is light tailed, and has no outliers. 
 ```
 
 ## Take 2
@@ -73,14 +83,20 @@ y = 1./(np.sqrt(2.*np.pi)) * np.exp( -.5*(x)**2  )  # normal distribution
 
 
 ```python
+plt.hist(y, bins='auto');
+plt.title('Histogram Function');
 
+kurtosis(y),skew(y)
 
 # Skewness = 1.109511549276228
 # kurtosis = -0.31039027765889804
 ```
 
-    Skewness = 1.109511549276228
-    kurtosis = -0.31039027765889804
+
+
+
+    (-0.31039027765889804, 1.109511549276228)
+
 
 
 
@@ -89,11 +105,14 @@ y = 1./(np.sqrt(2.*np.pi)) * np.exp( -.5*(x)**2  )  # normal distribution
 
 
 ```python
-# Your observations here 
+# A high positive skewness is observed as there are more values on the left 
+# side of the distribution mean than those on right side
 
-#
-#
-#
+# A negative kurtosis value indicates that the distribution has thinner tails 
+# and a flatter peak than the normal distribution. It is platykurtic. Note that the measure of kurtosis is
+# "comparing" to a normal distribution. Looking at the plot, the distribution is clearly
+# not normal. Kurtosis values are really mostly useful to look at when your observed curve 
+# is bell-shaped and you want to know if your tails are lighter or fatter than those of a normal distribution
 ```
 
 ## Summary
